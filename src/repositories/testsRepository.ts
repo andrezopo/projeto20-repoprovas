@@ -25,21 +25,14 @@ export async function getAllTestsGroupByDiscipline() {
           name: true,
           teacherDiscipline: {
             select: {
+              teacher: { select: { name: true } },
               Tests: {
-                distinct: ["categoryId"],
                 select: {
+                  name: true,
+                  pdfUrl: true,
                   category: {
                     select: {
                       name: true,
-                      tests: {
-                        select: {
-                          name: true,
-                          pdfUrl: true,
-                          teacherDiscipline: {
-                            select: { teacher: { select: { name: true } } },
-                          },
-                        },
-                      },
                     },
                   },
                 },

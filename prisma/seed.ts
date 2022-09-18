@@ -2,7 +2,16 @@ import prisma from "../src/database";
 
 async function main() {
   const termsNumbers = [1, 2, 3, 4, 5, 6];
-  const categoriesExamples = ["Projeto", "Prática", "Recuperação"];
+  const categoriesExamples = [
+    "Projeto",
+    "Prática",
+    "Recuperação",
+    "P1",
+    "P2",
+    "P3",
+    "P2ch",
+    "Outras",
+  ];
   const disciplinesExamples = [
     { name: "HTML e CSS", termId: 1 },
     { name: "JavaScript", termId: 2 },

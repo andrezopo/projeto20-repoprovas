@@ -11,5 +11,11 @@ export async function createTest(req: Request, res: Response) {
 export async function getTestsGroupByDiscipline(req: Request, res: Response) {
   const tests = await testsService.getTestsGroupByDiscipline();
 
-  res.send(tests);
+  res.status(200).send(tests);
+}
+
+export async function getTestsGroupByTeacher(req: Request, res: Response) {
+  const tests = await testsService.getTestsGroupByTeacher();
+
+  res.status(200).send(tests);
 }

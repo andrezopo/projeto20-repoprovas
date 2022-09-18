@@ -36,8 +36,32 @@ export async function getAllTestsGroupByDiscipline() {
                     },
                   },
                 },
+                orderBy: { categoryId: "desc" },
               },
             },
+          },
+        },
+      },
+    },
+  });
+}
+
+export async function getAllTestsGroupByTeacher() {
+  return await prisma.teachers.findMany({
+    where: {},
+    distinct: ["name"],
+    select: {
+      name: true,
+      disciplines: {
+        select: {
+          discipline: { select: { name: true } },
+          Tests: {
+            select: {
+              name: true,
+              pdfUrl: true,
+              category: { select: { name: true } },
+            },
+            orderBy: { categoryId: "desc" },
           },
         },
       },

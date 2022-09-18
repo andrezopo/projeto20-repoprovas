@@ -1,6 +1,7 @@
 import { getTeacherDiscipline } from "../repositories/teachersDisciplinesRepository";
 import {
   getAllTestsGroupByDiscipline,
+  getAllTestsGroupByTeacher,
   getDisciplineById,
   getTeacherById,
   insertNewTest,
@@ -38,5 +39,9 @@ export async function createTest(test: CreatingTest) {
 }
 
 export async function getTestsGroupByDiscipline() {
-  return getAllTestsGroupByDiscipline();
+  return await getAllTestsGroupByDiscipline();
+}
+
+export async function getTestsGroupByTeacher() {
+  return await getAllTestsGroupByTeacher();
 }

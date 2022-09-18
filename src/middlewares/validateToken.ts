@@ -19,22 +19,18 @@ export default async function validateToken(
       return res.status(422).send("Missing token");
     }
 
-    const decodedToken: any = jwt.verify(
-      token,
-      process.env.SECRET,
-      async (err, decoded) => {
-        if (err) {
-          return res.status(401).send("Unauthorized");
-        }
-        const user = await getUserById(decoded["id"]);
-        if (user.id !== decoded["id"]) {
-          return res.status(401).send("Unauthorized");
-        }
-        res.locals.userId = user.id;
-        res.locals.token = token;
-        next();
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) {
+        return res.status(401).send(err.message);
       }
-    );
+      const user = await getUserById(decoded["id"]);
+      if (user.id !== decoded["id"]) {
+        return res.status(401).send("Unauthorized");
+      }
+      res.locals.userId = user.id;
+      res.locals.token = token;
+      next();
+    });
   } catch (err) {
     throw { type: "unauthorized", message: "Invalid or expired token" };
   }

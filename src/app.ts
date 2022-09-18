@@ -6,7 +6,7 @@ import errorHandler from "./middlewares/errorHandler";
 
 const app = express();
 
-app.use([cors(), express.json]);
+app.use([cors(), express.json()]);
 
 app.use(router);
 

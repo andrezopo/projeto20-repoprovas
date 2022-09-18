@@ -24,3 +24,16 @@ describe("Testes na rota de provas", () => {
     expect(2 + 2).toBe(4);
   });
 });
+
+describe("test /sign-up", () => {
+  it("POST /sign-up", async () => {
+    const user = {
+      email: "xablau@xablau.com",
+      password: "Repoprovas123",
+      confirmPassword: "Repoprovas123",
+    };
+    const result = await supertest(app).post("/sign-up").send(user);
+
+    expect(result.status).toBe(201);
+  });
+});

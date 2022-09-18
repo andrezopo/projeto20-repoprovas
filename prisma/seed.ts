@@ -1,4 +1,3 @@
-import { takeCoverage } from "v8";
 import prisma from "../src/database";
 
 async function main() {

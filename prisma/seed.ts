@@ -30,45 +30,52 @@ async function main() {
     { teacherId: 2, disciplineId: 6 },
   ];
 
-  termsNumbers.forEach(async (number) => {
-    await prisma.terms.upsert({
-      where: { number },
-      update: {},
-      create: { number },
+  async function populateDatabase() {
+    termsNumbers.forEach(async (number) => {
+      await prisma.terms.upsert({
+        where: { number },
+        update: {},
+        create: { number },
+      });
     });
-  });
 
-  categoriesExamples.forEach(async (name) => {
-    await prisma.categories.upsert({
-      where: { name },
-      update: {},
-      create: { name },
+    categoriesExamples.forEach(async (name) => {
+      await prisma.categories.upsert({
+        where: { name },
+        update: {},
+        create: { name },
+      });
     });
-  });
 
-  await disciplinesExamples.forEach(async (discipline) => {
-    await prisma.disciplines.upsert({
-      where: { name: discipline.name },
-      update: {},
-      create: discipline,
+    disciplinesExamples.forEach(async (discipline) => {
+      await prisma.disciplines.upsert({
+        where: { name: discipline.name },
+        update: {},
+        create: discipline,
+      });
     });
-  });
 
-  await teachersExamples.forEach(async (name) => {
-    await prisma.teachers.upsert({
-      where: { name },
-      update: {},
-      create: { name },
+    teachersExamples.forEach(async (name) => {
+      await prisma.teachers.upsert({
+        where: { name },
+        update: {},
+        create: { name },
+      });
     });
-  });
+  }
 
-  teachersDisciplinesExamples.forEach(async (teacherDiscipline) => {
-    await prisma.teachersDisciplines.upsert({
-      where: { teacherDiscipline },
-      update: {},
-      create: teacherDiscipline,
+  async function populateTeachersDisciplines() {
+    teachersDisciplinesExamples.forEach(async (teacherDiscipline) => {
+      await prisma.teachersDisciplines.upsert({
+        where: { teacherDiscipline },
+        update: {},
+        create: teacherDiscipline,
+      });
     });
-  });
+  }
+
+  await populateDatabase();
+  await populateTeachersDisciplines();
 }
 
 main()

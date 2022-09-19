@@ -12,7 +12,7 @@ export async function signUp(user: User) {
   if (dbUser) {
     throw { type: "conflict", message: "Could not create account!" };
   }
-  const saltRounds = process.env.SALT_ROUNDS;
+  const saltRounds = process.env.SALT;
   const salt = bcrypt.genSaltSync(parseInt(saltRounds));
   const encodedPassword = bcrypt.hashSync(user.password, salt);
   await insertUser({ email: user.email, password: encodedPassword });

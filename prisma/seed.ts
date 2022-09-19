@@ -46,7 +46,7 @@ async function main() {
     });
   });
 
-  disciplinesExamples.forEach(async (discipline) => {
+  await disciplinesExamples.forEach(async (discipline) => {
     await prisma.disciplines.upsert({
       where: { name: discipline.name },
       update: {},
@@ -54,7 +54,7 @@ async function main() {
     });
   });
 
-  teachersExamples.forEach(async (name) => {
+  await teachersExamples.forEach(async (name) => {
     await prisma.teachers.upsert({
       where: { name },
       update: {},

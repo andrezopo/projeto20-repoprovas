@@ -34,8 +34,8 @@ export async function createTest(test: CreatingTest) {
     categoryId: test.categoryId,
     teacherDisciplineId: dbTeacherDiscipline.id,
   };
-  await insertNewTest(newTest);
-  return newTest;
+  const createdTest = await insertNewTest(newTest);
+  return createdTest;
 }
 
 export async function getTestsGroupByDiscipline() {

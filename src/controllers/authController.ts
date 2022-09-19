@@ -11,9 +11,7 @@ export async function signUp(req: Request, res: Response) {
 }
 
 export async function signIn(req: Request, res: Response) {
-  const body: SignUp = req.body;
-  delete body.confirmPassword;
-  const user: User = body;
+  const user: User = req.body;
   const token = await authService.signIn(user);
 
   res.status(200).send({ email: user.email, token });

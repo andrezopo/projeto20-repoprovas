@@ -10,7 +10,7 @@ export async function getDisciplineById(id: number) {
 }
 
 export async function insertNewTest(test: Test) {
-  await prisma.tests.create({ data: test });
+  return await prisma.tests.create({ data: test });
 }
 
 export async function getAllTestsGroupByDiscipline() {
